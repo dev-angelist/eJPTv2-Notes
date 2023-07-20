@@ -18,8 +18,6 @@ description: eLearnSecurity Junior Penetration Tester (eJPT) v2 Notes
 
 * Where to find the PTSv2 (Penetration Testing Student v2) course? - [INE Learning Paths](https://my.ine.com/learning-paths)​
 * Where to find the eJPT certification exam? - [eJPT](https://ine.com/learning/certifications/internal/elearnsecurity-junior-penetration-tester-cert)​
-* As these notes started with my PTS v1 study, I've decided to keep my [**Penetration Testing Prerequisites** notes here](https://blog.syselement.com/ine/courses/ejpt/penetration-testing-prerequisites) based on the (discontinued) PTSv1 course.
-* 🔬 For the **training** part I will use the provided INE Labs Environment (with the `PTSv2 paid course`) and I will link the labs from the [Attack-Defense](https://attackdefense.com/members) platform by PentesterAcademy (`subscription required`)
 
 ## ​[eJPT](https://ine.com/learning/certifications/internal/elearnsecurity-junior-penetration-tester-cert) Exam <a href="#ejpt-exam" id="ejpt-exam"></a>
 
