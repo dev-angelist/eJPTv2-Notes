@@ -14,7 +14,7 @@ description: eLearnSecurity Junior Penetration Tester (eJPT) v2 Notes
 * ​[**Host & Network Penetration Testing**](https://blog.syselement.com/ine/courses/ejpt/hostnetwork-penetration-testing) \~ 108 hours (`42h` of videos)
 * ​[**Web Application Penetration Testing**](https://blog.syselement.com/ine/courses/ejpt/webapp-penetration-testing) \~ 10 hours (`3h` of videos)
 
-## Useful links <a href="#useful-links" id="useful-links"></a>
+## e links <a href="#useful-links" id="useful-links"></a>
 
 * Where to find the PTSv2 (Penetration Testing Student v2) course? - [INE Learning Paths](https://my.ine.com/learning-paths)​
 * Where to find the eJPT certification exam? - [eJPT](https://ine.com/learning/certifications/internal/elearnsecurity-junior-penetration-tester-cert)​
@@ -51,6 +51,53 @@ description: eLearnSecurity Junior Penetration Tester (eJPT) v2 Notes
 * Hands-on, open book
 * **Dynamic flags**: randomly generated flags injected into the lab environment
 * Testing your ability to **find the answer**. How you do it is up to you.
+
+
+
+## Useful links
+
+### Intro (For starting hacking, not just for eJPT but also to get familiar with tryhackme)
+
+* [ ] OpenVPN https://tryhackme.com/room/openvpn
+* [ ] Welcome https://tryhackme.com/jr/welcome
+* [ ] Intro to Researching https://tryhackme.com/room/introtoresearch
+* [ ] Learn Linux https://tryhackme.com/room/zthlinux
+* [ ] Crash Course Pentesting https://tryhackme.com/room/ccpentesting
+
+### Tooling
+
+* [ ] Tmux https://tryhackme.com/room/rptmux
+* [ ] Nmap https://tryhackme.com/room/rpnmap
+* [ ] Web Scanning https://tryhackme.com/room/rpwebscanning
+* [ ] Sublist3r https://tryhackme.com/room/rpsublist3r
+* [ ] Metasploit https://tryhackme.com/room/rpmetasploit
+* [ ] Hydra https://tryhackme.com/room/hydra
+* [ ] Linux Privesc https://tryhackme.com/room/linuxprivesc
+* [ ] Web Scanning https://tryhackme.com/room/rpwebscanning
+
+### Web
+
+* [ ] OWASP top 10 https://tryhackme.com/room/owasptop10
+* [ ] Inclusion https://tryhackme.com/room/inclusion
+* [ ] Injection https://tryhackme.com/room/injection
+* [ ] Vulnversity https://tryhackme.com/room/vulnversity
+* [ ] Basic Pentesting https://tryhackme.com/room/basicpentestingjt
+
+### PrivEsc
+
+* [ ] Sudo Security Bypass https://tryhackme.com/room/sudovulnsbypass
+* [ ] Sudo Buffer Overflow https://tryhackme.com/room/sudovulnsbof
+* [ ] Windows Privesc Arena https://tryhackme.com/room/windowsprivescarena
+* [ ] Linux Privesc Arena https://tryhackme.com/room/linuxprivescarena
+* [ ] Windows Privesc https://tryhackme.com/room/windows10privesc
+* [ ] Blaster https://tryhackme.com/room/blaster
+* [ ] Ignite https://tryhackme.com/room/ignite
+* [ ] Kenobi https://tryhackme.com/room/kenobi
+* [ ] Capture the flag https://tryhackme.com/room/c4ptur3th3fl4g
+* [ ] Pickle Rick https://tryhackme.com/room/picklerick
+* [ ] Pivoting using Metasploit https://www.tutorialspoint.com/metasploit/metasploit\_pivoting.htm
+
+
 
 ## Other notes
 
