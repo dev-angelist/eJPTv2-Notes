@@ -14,7 +14,7 @@ description: eLearnSecurity Junior Penetration Tester (eJPT) v2 Notes
 * ​[**Host & Network Penetration Testing**](https://blog.syselement.com/ine/courses/ejpt/hostnetwork-penetration-testing) \~ 108 hours (`42h` of videos)
 * ​[**Web Application Penetration Testing**](https://blog.syselement.com/ine/courses/ejpt/webapp-penetration-testing) \~ 10 hours (`3h` of videos)
 
-## e links <a href="#useful-links" id="useful-links"></a>
+## E-Links <a href="#useful-links" id="useful-links"></a>
 
 * Where to find the PTSv2 (Penetration Testing Student v2) course? - [INE Learning Paths](https://my.ine.com/learning-paths)​
 * Where to find the eJPT certification exam? - [eJPT](https://ine.com/learning/certifications/internal/elearnsecurity-junior-penetration-tester-cert)​
@@ -97,8 +97,68 @@ description: eLearnSecurity Junior Penetration Tester (eJPT) v2 Notes
 * [ ] Pickle Rick https://tryhackme.com/room/picklerick
 * [ ] Pivoting using Metasploit https://www.tutorialspoint.com/metasploit/metasploit\_pivoting.htm
 
+### Other Resources
+
+{% embed url="https://bhavsec.com/posts/ejpt-cheatsheet/" %}
+
+{% embed url="https://github.com/JasonTurley/eJPT/blob/main/cheat-sheet.md" %}
+
+{% embed url="https://jarrodrizor.com/ejpt-guide/" %}
+
+{% embed url="https://jarrodrizor.com/ejpt-guide/" %}
+
+{% embed url="https://github.com/JasonTurley/eJPT/blob/main/cheat-sheet.md" %}
+
+{% embed url="https://kentosec.com/2019/08/04/how-to-pass-the-ejpt/" %}
+
+{% embed url="https://github.com/cocomelonc/ejpt" %}
+
+{% embed url="https://github.com/hunterluker/ejpt-notes" %}
+
+{% embed url="https://gitmhttps/github.com/osv22/ejpt_notes" %}
+
+{% embed url="https://github.com/sergiovks/eJPTv2-CheatSheet" %}
+
 
 
 ## Other notes
+
+On TryHackMe:
+
+WIRESHARK
+
+Overpass2 – hacked (Easy)
+
+StartUp (Easy)
+
+H4cked (Easy)
+
+Smag Grotto (Easy)
+
+Carnage (Medium)
+
+Warzone 1 (Medium)
+
+Misguided Ghost (Hard)
+
+Tshark (Medium)
+
+Game Zone
+
+SQL MAP
+
+Daily Bugle (Easy)
+
+SQL Injection Lab (Easy)
+
+SQLMAP (Easy)
+
+Revenge (Easy)
+
+Macchine blu HTB e THM
+
+Lab "Trova il server segreto" del corso INE
+
+Comprendere e imparare a utilizzare questi strumenti -Nmap -Hydra -Sqlmap -BurpSuite Fai più macchine possibili con difficoltà facile dalle piattaforme di HackTheBox TryHackMe. Con questo otterrai un'ottima base per l'esame. Pratica con i laboratori dell'INE Networking. Per abituarsi a usare WireShark fai la stanza OverPass2diTryHackMe, questa stanza è molto più complicata dell'esame, ma per familiarizzare un po con WireShark va bene.&#x20;
 
 > 📖 Read the [Letter Of Engagement](https://media.graphassets.com/RdsCvab8SvacedNV5k4V)​📖 Read the [Lab Guidelines](https://media.graphassets.com/26hoOMeZQDyu7QJQlvaJ)
