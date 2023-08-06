@@ -30,4 +30,91 @@ During SMB enumeration, a penetration tester or security analyst attempts to ret
 6. **Security Policies:** Obtaining information about security policies, such as password policies, that could impact the strength of user credentials.
 7. **Error Messages:** Analyzing error messages or responses from the SMB service, which might provide insights into potential misconfigurations or vulnerabilities.
 
-\
+### SMB Ports
+
+* TCP Port 445 - **Microsoft-DS** (Microsoft Directory Services): This is the main port used for SMB traffic on modern networks. It is commonly used for file and printer sharing, as well as other SMB-related operations.
+* UDP Port 137 - **NetBIOS Name Service**: This port is used for the NetBIOS Name Resolution service. NetBIOS (Network Basic Input/Output System) is a service that allows computers to communicate within a local network. This port is involved in resolving NetBIOS names to IP addresses.
+* UDP Port 138 - **NetBIOS Datagram Service**: This port is used for the NetBIOS Datagram Service. It is involved in the communication of datagrams between devices on the network.
+* TCP Port 139 - **NetBIOS Session Service**: In the past, this port was widely used for SMB traffic, but it has become less common in modern networks. It was used for file access operations and resource sharing.
+
+### SMB: Windows Discover & Mount
+
+#### Task List
+
+Windows machine (Server 2012) is provided to you.
+
+Learn to use Nmap to scan the target machine and mount the SMB share of the target machine using the Windows File Explorer as well as using the command prompt.
+
+**Objective**: Discover SMB share and mount it
+
+The following username and password may be used to access the service:
+
+\| Username | Password | | administrator | smbserver\_771 |
+
+<figure><img src="../../../.gitbook/assets/Schermata del 2023-08-06 12-17-42.png" alt=""><figcaption><p>systeminfo</p></figcaption></figure>
+
+This is IP address of the machine with hostname "ATTACKER":
+
+<figure><img src="../../../.gitbook/assets/Schermata del 2023-08-06 12-19-41.png" alt=""><figcaption><p>ifconfig</p></figcaption></figure>
+
+Run Nmap scan against the subnet to discover the target machine’s IP address.
+
+The target subnet is “255.255.240.0” hence we have mentioned CIDR to 20.
+
+<figure><img src="../../../.gitbook/assets/Schermata del 2023-08-06 12-29-05.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../../.gitbook/assets/Schermata del 2023-08-06 12-31-55.png" alt=""><figcaption></figcaption></figure>
+
+We see that hosts with IP: 10.2.22.92 and 10.2.25.111 have SMB open ports (139, 445).
+
+We have the credentials to access the target server, we can use GUI mode or terminal.
+
+```bash
+net use Z: \\10.2.22.92\C$ smbserver_771 /user:administrator
+```
+
+to delete sharing files we use this command:
+
+```bash
+ net use * /delete
+```
+
+<div align="left">
+
+<figure><img src="../../../.gitbook/assets/smb (1).gif" alt=""><figcaption></figcaption></figure>
+
+</div>
+
+### SMB: Nmap Scripts
+
+###
+
+###
+
+###
+
+###
+
+### SMB: SMBmap
+
+###
+
+###
+
+###
+
+### SMB: Recon
+
+###
+
+###
+
+###
+
+### SMB: Dictionary Attack
+
+###
+
+###
+
+### &#x20;
