@@ -1,6 +1,8 @@
 # 1.3 Enumeration
 
-> :bookmark\_tabs: **Prerequisites**
+## Enumeration
+
+> **⚡ Prerequisites**
 >
 > * Basic familiarity with Linux and networks concepts
 > * Footprinting and Scanning
@@ -9,6 +11,18 @@
 >
 > * Purpose of service enumeration
 > * Enumeration on common and uncommon services and protocols
+>
+> **🔬 Training list - PentesterAcademy/INE Labs**`subscription required`
+>
+> * ​[SMB Servers Win Recon](https://attackdefense.com/listing?labtype=windows-recon\&subtype=windows-recon-smb)​
+> * ​[SMB Servers Network Recon](https://attackdefense.com/listing?labtype=network-recon\&subtype=recon-smb)​
+> * ​[FTP Servers Linux Recon](https://attackdefense.com/listing?labtype=linux-security-recon\&subtype=recon-ftp)​
+> * ​[SSH Servers Network Recon](https://attackdefense.com/listing?labtype=network-recon\&subtype=recon-ssh)​
+> * ​[IIS Servers Win Recon](https://attackdefense.com/listing?labtype=windows-recon\&subtype=windows-recon-iis)​
+> * ​[Webservers Network Recon](https://attackdefense.com/listing?labtype=network-recon\&subtype=recon-webserver)​
+> * ​[SQL Databases Linux Recon](https://attackdefense.com/listing?labtype=linux-security-recon\&subtype=linux-security-recon-sqldbs)​
+> * ​[SQL Databases Network Recon](https://attackdefense.com/listing?labtype=network-recon\&subtype=recon-sqldb)​
+> * ​[MSSQL Servers Win Recon](https://attackdefense.com/listing?labtype=windows-recon\&subtype=windows-recon-mssql)​
 
 ## Server & Services
 
