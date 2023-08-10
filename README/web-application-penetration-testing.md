@@ -2,7 +2,7 @@
 
 ### Topics
 
-1. [Intro to Web App Pentesting](3.1-intro-to-web-app-pentesting.md)
+1. [Intro to Web App Pentesting](web-application-penetration-testing/3.1-intro-to-web-app-pentesting.md)
 
 > #### ❗ Disclaimer
 >
