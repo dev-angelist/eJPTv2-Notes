@@ -21,7 +21,7 @@
     * [2.3 The Metasploit Framework (MSF)](README/host-and-network-penetration-testing/2.3-the-metasploit-framework-msf/README.md)
       * [MSF Introduction](README/host-and-network-penetration-testing/2.3-the-metasploit-framework-msf/msf-introduction.md)
       * [Information Gathering & Enumeration](README/host-and-network-penetration-testing/2.3-the-metasploit-framework-msf/information-gathering-and-enumeration.md)
-      * [Vulnerability Assestment](README/host-and-network-penetration-testing/2.3-the-metasploit-framework-msf/vulnerability-assestment.md)
+      * [Vulnerability Scanning](README/host-and-network-penetration-testing/2.3-the-metasploit-framework-msf/vulnerability-scanning.md)
       * [Client-Side Attacks](README/host-and-network-penetration-testing/2.3-the-metasploit-framework-msf/client-side-attacks.md)
       * [Exploitation](README/host-and-network-penetration-testing/2.3-the-metasploit-framework-msf/exploitation.md)
       * [Post Exploitation](README/host-and-network-penetration-testing/2.3-the-metasploit-framework-msf/post-exploitation.md)

@@ -99,6 +99,10 @@ description: eLearnSecurity Junior Penetration Tester (eJPT) v2 Notes
 
 ### Other Resources
 
+
+
+{% embed url="https://blog.syselement.com/ine/courses/ejpt" %}
+
 {% embed url="https://bhavsec.com/posts/ejpt-cheatsheet/" %}
 
 {% embed url="https://github.com/JasonTurley/eJPT/blob/main/cheat-sheet.md" %}
@@ -160,5 +164,11 @@ Macchine blu HTB e THM
 Lab "Trova il server segreto" del corso INE
 
 Comprendere e imparare a utilizzare questi strumenti -Nmap -Hydra -Sqlmap -BurpSuite Fai più macchine possibili con difficoltà facile dalle piattaforme di HackTheBox TryHackMe. Con questo otterrai un'ottima base per l'esame. Pratica con i laboratori dell'INE Networking. Per abituarsi a usare WireShark fai la stanza OverPass2diTryHackMe, questa stanza è molto più complicata dell'esame, ma per familiarizzare un po con WireShark va bene.&#x20;
+
+
+
+Thanks to Alex for allowing me the opportunity to use his notes as an additional source:
+
+{% embed url="https://blog.syselement.com/ine/courses/ejpt" %}
 
 > 📖 Read the [Letter Of Engagement](https://media.graphassets.com/RdsCvab8SvacedNV5k4V)​📖 Read the [Lab Guidelines](https://media.graphassets.com/26hoOMeZQDyu7QJQlvaJ)
