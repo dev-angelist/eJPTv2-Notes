@@ -2,12 +2,14 @@
 
 ## ​[Armitage](https://www.offsec.com/metasploit-unleashed/armitage/) - MSF GUI <a href="#armitage-msf-gui" id="armitage-msf-gui"></a>
 
-🗒️ **Armitage** is a Java-based GUI front-end for the MSF.
+🗒️ **Armitage** is a graphical user interface (GUI) for the Metasploit Framework, a widely used penetration testing and ethical hacking tool. Armitage provides a user-friendly interface for interacting with Metasploit's powerful features, making it easier for cybersecurity professionals to perform tasks related to network penetration testing, vulnerability assessment, and exploit development.
 
-* Automate port scanning, exploitation, post exploitation
-* Visualize targets
-* Requires MSFdb and services to be running
-* Pre-packed with Kali Linux
+Some key features of Armitage include:
+
+1. **Visual Interface:** Armitage offers a visual representation of network targets and their vulnerabilities, making it easier for users to understand and manage their testing environment.
+2. **Automated Exploitation:** It simplifies the process of finding and exploiting vulnerabilities in target systems by providing automated tools and workflows.
+3. **Session Management:** Armitage allows users to manage active sessions and connections to compromised systems, which is crucial for post-exploitation tasks.
+4. **Reporting:** Users can generate reports detailing their penetration testing activities and findings.
 
 > 🔬 **Port Scanning & Enumeration With Armitage** - lab by INE
 >
@@ -39,16 +41,6 @@ service postgresql start && msfconsole -qdb\_status\[\*] Connected to msf. Conne
 * Search for `rejetto` and launch the exploit module
 
 ![](https://2946054920-files.gitbook.io/\~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FlhjuckuLbvBn36EoFL7P%2Fuploads%2Fgit-blob-9df574e8bb53e8691054af5000a6f3de697520be%2Fimage-20230422173456328.png?alt=media)![](https://2946054920-files.gitbook.io/\~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FlhjuckuLbvBn36EoFL7P%2Fuploads%2Fgit-blob-34b3185a08d1884a6069ad109d1fd193cc0bc3cd%2Fimage-20230422173621170.png?alt=media)
-
-
-
-
-
-
-
-
-
-
 
 * Try **Dump Hashes** via the `registry method`
 
@@ -95,6 +87,3 @@ Administrator:500:aad3b435b51404eeaad3b435b51404ee:5c4d59391f656d5958dab124ffeab
 #### Armitage Kali Linux Install <a href="#armitage-kali-linux-install" id="armitage-kali-linux-install"></a>
 
 sudo apt install armitage -ysudo msfdb initsudo nano /etc/postgresql/15/main/pg\_hba.conf# On line 87 switch “scram-sha-256” to “trust”sudo systemctl enable postgresqlsudo systemctl restart postgresqlsudo armitage
-
-
-
