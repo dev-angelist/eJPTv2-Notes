@@ -16,7 +16,12 @@ Some key features of Armitage include:
 > * Victim Machine 1: `10.2.21.86`
 > * Victim Machine 2: `10.2.25.150`
 
-service postgresql start && msfconsole -qdb\_status\[\*] Connected to msf. Connection type: postgresql.​# Open a new tab and start Armitagearmitage# Answer "YES" for the RPC serverArmitage
+```bash
+service postgresql start && msfconsole -qdb_status
+[*] Connected to msf. Connection type: postgresql. 
+# Open a new tab and start Armitagearmitage
+# Answer "YES" for the RPC serverArmitage
+```
 
 <figure><img src="https://2946054920-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FlhjuckuLbvBn36EoFL7P%2Fuploads%2Fgit-blob-f904d06c20ea9b281adbd29080a55da613d7b57e%2Fimage-20230422172326118.png?alt=media" alt=""><figcaption></figcaption></figure>
 
