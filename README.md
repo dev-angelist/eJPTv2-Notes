@@ -10,9 +10,9 @@ description: eLearnSecurity Junior Penetration Tester (eJPT) v2 Notes
 
 \~ 145 hours (_`~56h of videos`_)Activities: **4** sections , **12** courses , **229** videos, **154** quizzes, **120** labs
 
-* ​[**Assessment Methodologies & Auditing**](https://blog.syselement.com/ine/courses/ejpt/assessment-methodologies) \~ 27 hours (`11h` of videos)
-* ​[**Host & Network Penetration Testing**](https://blog.syselement.com/ine/courses/ejpt/hostnetwork-penetration-testing) \~ 108 hours (`42h` of videos)
-* ​[**Web Application Penetration Testing**](https://blog.syselement.com/ine/courses/ejpt/webapp-penetration-testing) \~ 10 hours (`3h` of videos)
+* ​[**Assessment Methodologies & Auditing**](README/assessment-methodologies-and-auditing/) \~ 27 hours (`11h` of videos)
+* [​**Host & Network Penetration Testing** ](README/host-and-network-penetration-testing.md)\~ 108 hours (`42h` of videos)
+* [​**Web Application Penetration Testing** ](README/web-application-penetration-testing.md)\~ 10 hours (`3h` of videos)
 
 ## E-Links <a href="#useful-links" id="useful-links"></a>
 
