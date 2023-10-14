@@ -31,3 +31,4 @@
     * [2.6 Social Engineering](README/host-and-network-penetration-testing/2.6-social-engineering.md)
   * [3⃣ Web Application Penetration Testing](README/web-application-penetration-testing.md)
     * [3.1 Intro to Web App Pentesting](README/web-application-penetration-testing/3.1-intro-to-web-app-pentesting.md)
+* [eJPT Cheat Sheet](ejpt-cheat-sheet.md)
