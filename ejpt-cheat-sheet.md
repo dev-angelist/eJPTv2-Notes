@@ -3413,7 +3413,17 @@ find / -name settings.php -exec grep "drupal_hash_salt\|'database'\|'username'\|
 mysql -u drupaluser --password='2r9u8hu23t532erew' -e 'use drupal; select * from users'
 ```
 
-References (tranks to all):
+### \[CVE-2018-7600] Drupalgeddon 2
+
+[https://ine.com/blog/cve-2018-7600-drupalgeddon-2](https://ine.com/blog/cve-2018-7600-drupalgeddon-2)
+
+In late March 2018, a critical vulnerability was uncovered in Drupal CMS. **Drupal before 7.58, 8.x before 8.3.9, 8.4.x before 8.4.6, and 8.5.x before 8.5.1** versions were affected by this vulnerability.
+
+It allows remote attackers to execute arbitrary code because of an issue affecting multiple subsystems with default or standard module configurations.
+
+A lot of PoC is available to exploit this vulnerability.
+
+#### References (tranks to all):
 
 [https://blog.syselement.com/ine/courses/ejpt](https://blog.syselement.com/ine/courses/ejpt)
 
