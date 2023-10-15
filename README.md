@@ -2,7 +2,7 @@
 description: eLearnSecurity Junior Penetration Tester (eJPT) v2 Notes
 ---
 
-# eJPTv2-Notes
+# 📝 eJPTv2-Notes
 
 <figure><img src="https://2946054920-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FlhjuckuLbvBn36EoFL7P%2Fuploads%2Fgit-blob-bffa40634a1b5b29bb73c5b93d38b2fa01dbb5e4%2FeJPTv2-small.png?alt=media" alt=""><figcaption><p>eJPT - © eLearnSecurity | INE</p></figcaption></figure>
 
@@ -54,48 +54,11 @@ description: eLearnSecurity Junior Penetration Tester (eJPT) v2 Notes
 
 
 
-## Useful links
+## [Preparation RoadMap to pass eJPT exam](README-1.md)
 
-### Intro (For starting hacking, not just for eJPT but also to get familiar with tryhackme)
+## [eJPT Cheat Sheet](ejpt-cheat-sheet.md)
 
-* [ ] OpenVPN https://tryhackme.com/room/openvpn
-* [ ] Welcome https://tryhackme.com/jr/welcome
-* [ ] Intro to Researching https://tryhackme.com/room/introtoresearch
-* [ ] Learn Linux https://tryhackme.com/room/zthlinux
-* [ ] Crash Course Pentesting https://tryhackme.com/room/ccpentesting
-
-### Tooling
-
-* [ ] Tmux https://tryhackme.com/room/rptmux
-* [ ] Nmap https://tryhackme.com/room/rpnmap
-* [ ] Web Scanning https://tryhackme.com/room/rpwebscanning
-* [ ] Sublist3r https://tryhackme.com/room/rpsublist3r
-* [ ] Metasploit https://tryhackme.com/room/rpmetasploit
-* [ ] Hydra https://tryhackme.com/room/hydra
-* [ ] Linux Privesc https://tryhackme.com/room/linuxprivesc
-* [ ] Web Scanning https://tryhackme.com/room/rpwebscanning
-
-### Web
-
-* [ ] OWASP top 10 https://tryhackme.com/room/owasptop10
-* [ ] Inclusion https://tryhackme.com/room/inclusion
-* [ ] Injection https://tryhackme.com/room/injection
-* [ ] Vulnversity https://tryhackme.com/room/vulnversity
-* [ ] Basic Pentesting https://tryhackme.com/room/basicpentestingjt
-
-### PrivEsc
-
-* [ ] Sudo Security Bypass https://tryhackme.com/room/sudovulnsbypass
-* [ ] Sudo Buffer Overflow https://tryhackme.com/room/sudovulnsbof
-* [ ] Windows Privesc Arena https://tryhackme.com/room/windowsprivescarena
-* [ ] Linux Privesc Arena https://tryhackme.com/room/linuxprivescarena
-* [ ] Windows Privesc https://tryhackme.com/room/windows10privesc
-* [ ] Blaster https://tryhackme.com/room/blaster
-* [ ] Ignite https://tryhackme.com/room/ignite
-* [ ] Kenobi https://tryhackme.com/room/kenobi
-* [ ] Capture the flag https://tryhackme.com/room/c4ptur3th3fl4g
-* [ ] Pickle Rick https://tryhackme.com/room/picklerick
-* [ ] Pivoting using Metasploit https://www.tutorialspoint.com/metasploit/metasploit\_pivoting.htm
+###
 
 ### Other Resources
 

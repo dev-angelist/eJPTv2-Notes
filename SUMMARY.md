@@ -1,6 +1,6 @@
 # Table of contents
 
-* [eJPTv2-Notes](README.md)
+* [📝 eJPTv2-Notes](README.md)
   * [1⃣ Assessment Methodologies & Auditing](README/assessment-methodologies-and-auditing/README.md)
     * [1.1 Information Gathering](README/assessment-methodologies-and-auditing/1.1-information-gathering.md)
     * [1.2 Footprinting & Scanning](README/assessment-methodologies-and-auditing/1.2-footprinting-and-scanning.md)
@@ -32,4 +32,4 @@
   * [3⃣ Web Application Penetration Testing](README/web-application-penetration-testing.md)
     * [3.1 Intro to Web App Pentesting](README/web-application-penetration-testing/3.1-intro-to-web-app-pentesting.md)
 * [🛣 RoadMap](README-1.md)
-* [eJPT Cheat Sheet](ejpt-cheat-sheet.md)
+* [📔 eJPT Cheat Sheet](ejpt-cheat-sheet.md)
