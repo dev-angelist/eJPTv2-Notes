@@ -14,9 +14,7 @@ description: eLearnSecurity Junior Penetration Tester (eJPT) v2 RoadMap
 * [​**Host & Network Penetration Testing** ](README/host-and-network-penetration-testing.md)\~ 108 hours (`42h` of videos)
 * [​**Web Application Penetration Testing** ](README/web-application-penetration-testing.md)\~ 10 hours (`3h` of videos)
 
-## Useful links
-
-### Background Information
+## Background Information
 
 * OpenVPN 🏠 [THM Room](https://tryhackme.com/room/openvpn)
 * Linux Fundamentals Module 🏠 [THM Room](https://tryhackme.com/module/linux-fundamentals)
@@ -36,7 +34,7 @@ description: eLearnSecurity Junior Penetration Tester (eJPT) v2 RoadMap
 * Vulnerabilities 101 🏠 [THM Room](https://tryhackme.com/room/vulnerabilities101)
 * Reverse Shell & Bind Shell 🗒️ [Hacking Tutorials Article](https://www.hackingtutorials.org/networking/hacking-netcat-part-2-bind-reverse-shells/)
 
-### Tooling
+## Tooling
 
 * BurpSuite: The Basics 🏠 [THM Room](https://tryhackme.com/room/burpsuitebasics)
 * BurpSuite: Repeater 🏠 [THM Room](https://tryhackme.com/room/burpsuiterepeater)
@@ -56,7 +54,7 @@ description: eLearnSecurity Junior Penetration Tester (eJPT) v2 RoadMap
 * Warzone 1 🚩 [THM CTF ](https://tryhackme.com/room/warzoneone)🟠 - My Writeup
 * Misguided Ghost 🚩 [THM CTF ](https://tryhackme.com/room/misguidedghosts)🔴 - My Writeup
 
-### Web
+## Web
 
 * OWASP top 10 🏠 [THM Room](https://tryhackme.com/room/owasptop10)
 * Inclusion 🏠 [THM Room](https://tryhackme.com/room/inclusion)
@@ -68,7 +66,7 @@ description: eLearnSecurity Junior Penetration Tester (eJPT) v2 RoadMap
 * StartUp 🚩 [THM CTF](https://tryhackme.com/room/startup) 🟢 - My Writeup
 * Daily Bugle 🚩 [THM CTF](https://tryhackme.com/room/dailybugle) 🔴 - My Writeup
 
-### Post Exploitation
+## Post Exploitation
 
 * Post Exploitation Basics  🏠 [THM Room](https://tryhackme.com/room/postexploit)
 * Sudo Security Bypass 🏠 [THM Room](https://tryhackme.com/room/sudovulnsbypass)&#x20;
@@ -85,7 +83,7 @@ description: eLearnSecurity Junior Penetration Tester (eJPT) v2 RoadMap
 * Pickle Rick 🚩 [THM CTF](https://tryhackme.com/room/picklerick) 🟢 - [My Writeup](http://127.0.0.1:5000/s/rRWtuMw6xkkeDjZfkcWC/pickle-rick)
 * Pivoting using Metasploit 🗒️ [TutorialsPoint Article](https://www.tutorialspoint.com/metasploit/metasploit\_pivoting.htm)
 
-### Other Resources
+## Other Resources
 
 
 

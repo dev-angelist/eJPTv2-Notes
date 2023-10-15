@@ -6,7 +6,7 @@ description: eLearnSecurity Junior Penetration Tester (eJPT) v2 Notes
 
 <figure><img src="https://2946054920-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FlhjuckuLbvBn36EoFL7P%2Fuploads%2Fgit-blob-bffa40634a1b5b29bb73c5b93d38b2fa01dbb5e4%2FeJPTv2-small.png?alt=media" alt=""><figcaption><p>eJPT - © eLearnSecurity | INE</p></figcaption></figure>
 
-## Course duration & Topics <a href="#course-duration-and-topics" id="course-duration-and-topics"></a>
+## Course duration & Topics ⏳📚 <a href="#course-duration-and-topics" id="course-duration-and-topics"></a>
 
 \~ 145 hours (_`~56h of videos`_)Activities: **4** sections , **12** courses , **229** videos, **154** quizzes, **120** labs
 
@@ -14,12 +14,12 @@ description: eLearnSecurity Junior Penetration Tester (eJPT) v2 Notes
 * [​**Host & Network Penetration Testing** ](README/host-and-network-penetration-testing.md)\~ 108 hours (`42h` of videos)
 * [​**Web Application Penetration Testing** ](README/web-application-penetration-testing.md)\~ 10 hours (`3h` of videos)
 
-## E-Links <a href="#useful-links" id="useful-links"></a>
+## E-Links 🔗📔 <a href="#useful-links" id="useful-links"></a>
 
 * Where to find the PTSv2 (Penetration Testing Student v2) course? - [INE Learning Paths](https://my.ine.com/learning-paths)​
 * Where to find the eJPT certification exam? - [eJPT](https://ine.com/learning/certifications/internal/elearnsecurity-junior-penetration-tester-cert)​
 
-## ​[eJPT](https://ine.com/learning/certifications/internal/elearnsecurity-junior-penetration-tester-cert) Exam <a href="#ejpt-exam" id="ejpt-exam"></a>
+## ​[eJPT](https://ine.com/learning/certifications/internal/elearnsecurity-junior-penetration-tester-cert) Exam 📄🖊️ <a href="#ejpt-exam" id="ejpt-exam"></a>
 
 * Time limit: 2 days (**48 hours** lab on)
 * Questions: **35**
@@ -52,11 +52,11 @@ description: eLearnSecurity Junior Penetration Tester (eJPT) v2 Notes
 * **Dynamic flags**: randomly generated flags injected into the lab environment
 * Testing your ability to **find the answer**. How you do it is up to you.
 
+## Resources 📑📘
 
+### 👉 [Preparation RoadMap to pass eJPT exam](README-1.md) 🛣️
 
-## [Preparation RoadMap to pass eJPT exam](README-1.md)
-
-## [eJPT Cheat Sheet](ejpt-cheat-sheet.md)
+### 👉 [eJPT Cheat Sheet](ejpt-cheat-sheet.md) 📔
 
 ###
 
