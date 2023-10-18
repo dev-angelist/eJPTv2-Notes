@@ -4,7 +4,7 @@ description: eLearnSecurity Junior Penetration Tester (eJPT) v2 Notes
 
 # 📝 eJPTv2-Notes
 
-<figure><img src="https://2946054920-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FlhjuckuLbvBn36EoFL7P%2Fuploads%2Fgit-blob-bffa40634a1b5b29bb73c5b93d38b2fa01dbb5e4%2FeJPTv2-small.png?alt=media" alt=""><figcaption><p>eJPT - © eLearnSecurity | INE</p></figcaption></figure>
+<figure><img src=".gitbook/assets/image (15).png" alt="" width="563"><figcaption><p>eJPT - © eLearnSecurity | INE</p></figcaption></figure>
 
 ## Course duration & Topics ⏳📚 <a href="#course-duration-and-topics" id="course-duration-and-topics"></a>
 
@@ -58,80 +58,8 @@ description: eLearnSecurity Junior Penetration Tester (eJPT) v2 Notes
 
 ### 👉 [eJPT Cheat Sheet](ejpt-cheat-sheet.md) 📔
 
-###
-
-### Other Resources
 
 
-
-{% embed url="https://blog.syselement.com/ine/courses/ejpt" %}
-
-{% embed url="https://bhavsec.com/posts/ejpt-cheatsheet/" %}
-
-{% embed url="https://github.com/JasonTurley/eJPT/blob/main/cheat-sheet.md" %}
-
-{% embed url="https://jarrodrizor.com/ejpt-guide/" %}
-
-{% embed url="https://jarrodrizor.com/ejpt-guide/" %}
-
-{% embed url="https://github.com/JasonTurley/eJPT/blob/main/cheat-sheet.md" %}
-
-{% embed url="https://kentosec.com/2019/08/04/how-to-pass-the-ejpt/" %}
-
-{% embed url="https://github.com/cocomelonc/ejpt" %}
-
-{% embed url="https://github.com/hunterluker/ejpt-notes" %}
-
-{% embed url="https://gitmhttps/github.com/osv22/ejpt_notes" %}
-
-{% embed url="https://github.com/sergiovks/eJPTv2-CheatSheet" %}
-
-
-
-## Other notes
-
-On TryHackMe:
-
-WIRESHARK
-
-Overpass2 – hacked (Easy)
-
-StartUp (Easy)
-
-H4cked (Easy)
-
-Smag Grotto (Easy)
-
-Carnage (Medium)
-
-Warzone 1 (Medium)
-
-Misguided Ghost (Hard)
-
-Tshark (Medium)
-
-Game Zone
-
-SQL MAP
-
-Daily Bugle (Easy)
-
-SQL Injection Lab (Easy)
-
-SQLMAP (Easy)
-
-Revenge (Easy)
-
-Macchine blu HTB e THM
-
-Lab "Trova il server segreto" del corso INE
-
-Comprendere e imparare a utilizzare questi strumenti -Nmap -Hydra -Sqlmap -BurpSuite Fai più macchine possibili con difficoltà facile dalle piattaforme di HackTheBox TryHackMe. Con questo otterrai un'ottima base per l'esame. Pratica con i laboratori dell'INE Networking. Per abituarsi a usare WireShark fai la stanza OverPass2diTryHackMe, questa stanza è molto più complicata dell'esame, ma per familiarizzare un po con WireShark va bene.&#x20;
-
-
-
-Thanks to Alex for allowing me the opportunity to use his notes as an additional source:
-
-{% embed url="https://blog.syselement.com/ine/courses/ejpt" %}
+🙏🏻 _Thanks to Alex for allowing me the opportunity to fork_ [_his notes._](https://blog.syselement.com/ine/courses/ejpt)🙏🏻
 
 > 📖 Read the [Letter Of Engagement](https://media.graphassets.com/RdsCvab8SvacedNV5k4V)​📖 Read the [Lab Guidelines](https://media.graphassets.com/26hoOMeZQDyu7QJQlvaJ)

@@ -4,15 +4,14 @@ description: eLearnSecurity Junior Penetration Tester (eJPT) v2 RoadMap
 
 # 🛣 RoadMap
 
-<figure><img src="https://2946054920-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FlhjuckuLbvBn36EoFL7P%2Fuploads%2Fgit-blob-bffa40634a1b5b29bb73c5b93d38b2fa01dbb5e4%2FeJPTv2-small.png?alt=media" alt=""><figcaption><p>eJPT - © eLearnSecurity | INE</p></figcaption></figure>
+<figure><img src=".gitbook/assets/image (16).png" alt="" width="375"><figcaption></figcaption></figure>
 
-## Course duration & Topics <a href="#course-duration-and-topics" id="course-duration-and-topics"></a>
+\
+The path to becoming a penetration tester is like a winding river, ever-changing and unpredictable. To navigate it, one must be adaptable, resourceful, and always willing to learn.
 
-\~ 145 hours (_`~56h of videos`_)Activities: **4** sections , **12** courses , **229** videos, **154** quizzes, **120** labs
+The journey to becoming a penetration tester is a lifelong one. It is a journey of continuous learning, discovery, and self-improvement.
 
-* ​[**Assessment Methodologies & Auditing**](README/assessment-methodologies-and-auditing/) \~ 27 hours (`11h` of videos)
-* [​**Host & Network Penetration Testing** ](README/host-and-network-penetration-testing.md)\~ 108 hours (`42h` of videos)
-* [​**Web Application Penetration Testing** ](README/web-application-penetration-testing.md)\~ 10 hours (`3h` of videos)
+I will try to indicate the path I used and which I would recommend to reach a level necessary to pass the exam. 👇
 
 ## Background Information
 

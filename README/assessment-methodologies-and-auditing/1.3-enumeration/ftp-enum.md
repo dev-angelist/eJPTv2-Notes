@@ -59,8 +59,6 @@ nmap -p21 -sV -O 192.217.238.3
 Service Info: OS: Unix
 ```
 
-![nmap -p21](broken-reference)
-
 > 📌 FTP server version is `ProFTPD 1.3.5a`.
 
 ### FTP Anonymous Login
@@ -92,8 +90,6 @@ hydra -L /usr/share/metasploit-framework/data/wordlists/common_users.txt -P /usr
 [21][ftp] host: 192.217.238.3   login: diag   password: tigger
 1 of 1 target successfully completed, 7 valid passwords found
 ```
-
-![hydra user:password attack](broken-reference)
 
 > 📌 Found credentials are:
 >
@@ -213,8 +209,6 @@ nmap -p21 -sV -O 192.119.169.3
 ```bash
 21/tcp open  ftp     vsftpd 3.0.3
 ```
-
-![](broken-reference)
 
 > 📌 FTP server version `vsftpd 3.0.3`
 

