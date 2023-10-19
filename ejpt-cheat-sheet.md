@@ -307,7 +307,7 @@ gzip -d /usr/share/wordlists/rockyou.txt.gz
 hydra -l admin -P /usr/share/wordlists/rockyou.txt <TARGET_IP> smb
 ```
 
-We can use a wordlist generator tools (how [Cewl](http://127.0.0.1:5000/s/iS3hadq7jVFgSa8k5wRA/tools/cewl)), to create custom wordlists.
+We can use a wordlist generator tools (how [Cewl](http://127.0.0.1:5000/s/iS3hadq7jVFgSa8k5wRA/pratical-ethical-hacker-notes/cewl)), to create custom wordlists.
 
 #### Metasploit
 

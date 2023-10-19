@@ -1483,8 +1483,8 @@ exploit
 
 #### [hydra](https://www.kali.org/tools/hydra/)
 
-{% content-ref url="http://127.0.0.1:5000/s/iS3hadq7jVFgSa8k5wRA/tools/hydra" %}
-[Hydra](http://127.0.0.1:5000/s/iS3hadq7jVFgSa8k5wRA/tools/hydra)
+{% content-ref url="http://127.0.0.1:5000/s/iS3hadq7jVFgSa8k5wRA/pratical-ethical-hacker-notes/hydra" %}
+[Hydra](http://127.0.0.1:5000/s/iS3hadq7jVFgSa8k5wRA/pratical-ethical-hacker-notes/hydra)
 {% endcontent-ref %}
 
 > [**`hydra`**](https://github.com/vanhauser-thc/thc-hydra) - tool to guess/crack valid login/password pairs
